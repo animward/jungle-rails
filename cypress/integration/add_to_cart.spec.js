@@ -12,8 +12,12 @@ describe('jungle store', () => {
     it('There is products on the page', () => {
       cy.get('.products article').should('be.visible');
     });
-    it('There is 2 products on the page', () => {
-      cy.get('.products article').should('have.length', 2);
+    describe('clicking Add button on product', () => {
+      it('changes the number of items shown in My Cart', () => {
+        cy.contains('My Cart (0)').should('exist');
+        cy.get('article button').first().click({force: true});
+        cy.contains('My Cart (1)').should('exist');
+      })
     });
   });
 });
